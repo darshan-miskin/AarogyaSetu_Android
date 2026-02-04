@@ -1,5 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
 apply plugin: 'com.google.firebase.crashlytics'
 
 
@@ -78,40 +79,40 @@ android {
 //            buildConfigField "String", "TNC_URL", "\"${keystoreProperties['tnc_url']}\""
 //            buildConfigField "String", "VERIFY_APP_URL", "\"${keystoreProperties['verify_app_url']}\""
 
-        buildConfigField "String", "AUTH_ALIAS", ""
-        buildConfigField "String", "DID_UUID", ""
-        buildConfigField "String", "PINGER_UUID", ""
-        buildConfigField "String", "SERVICE_UUID", ""
-        buildConfigField "String", "SSL_PUBLIC_KEY", ""
-        buildConfigField "String", "SSL_BACKUP_KEY", ""
-        buildConfigField "String", "SSL_AUTH_KEY", ""
-        buildConfigField "String", "SSL_AUTH_BACKUP_KEY", ""
-        buildConfigField "String", "PLATFORM_KEY", ""
-        buildConfigField "String", "ALIAS", ""
-        buildConfigField "String", "KEYSTORE", ""
-        buildConfigField "String", "TRANSFORMATION", ""
-        buildConfigField "String", "AWS_API_KEY", ""
-        buildConfigField "String", "WEB_URL", ""
-        buildConfigField "String", "WEB_HOST", ""
-        buildConfigField "String", "HOST_URL", ""
-        buildConfigField "String", "AUTH_HOST_URL", ""
+        buildConfigField "String", "AUTH_ALIAS", "\"\""
+        buildConfigField "String", "DID_UUID", "\"\""
+        buildConfigField "String", "PINGER_UUID", "\"\""
+        buildConfigField "String", "SERVICE_UUID", "\"\""
+        buildConfigField "String", "SSL_PUBLIC_KEY", "\"\""
+        buildConfigField "String", "SSL_BACKUP_KEY", "\"\""
+        buildConfigField "String", "SSL_AUTH_KEY", "\"\""
+        buildConfigField "String", "SSL_AUTH_BACKUP_KEY", "\"\""
+        buildConfigField "String", "PLATFORM_KEY", "\"\""
+        buildConfigField "String", "ALIAS", "\"\""
+        buildConfigField "String", "KEYSTORE", "\"\""
+        buildConfigField "String", "TRANSFORMATION", "\"\""
+        buildConfigField "String", "AWS_API_KEY", "\"\""
+        buildConfigField "String", "WEB_URL", "\"\""
+        buildConfigField "String", "WEB_HOST", "\"\""
+        buildConfigField "String", "HOST_URL", "\"\""
+        buildConfigField "String", "AUTH_HOST_URL", "\"\""
 
-        buildConfigField "String", "QR_PUBLIC_KEY_API", ""
-        buildConfigField "String", "QR_CODE_API", ""
-        buildConfigField "String", "BULK_UPLOAD_API", ""
-        buildConfigField "String", "REGISTER_USER_API", ""
-        buildConfigField "String", "CHECK_STATUS_API", ""
-        buildConfigField "String", "FCM_TOKEN_API", ""
-        buildConfigField "String", "CONFIG_API", ""
-        buildConfigField "String", "GENERATE_OTP_API", ""
-        buildConfigField "String", "VALIDATE_OTP_API", ""
-        buildConfigField "String", "REFRESH_TOKEN_API", ""
+        buildConfigField "String", "QR_PUBLIC_KEY_API", "\"\""
+        buildConfigField "String", "QR_CODE_API", "\"\""
+        buildConfigField "String", "BULK_UPLOAD_API", "\"\""
+        buildConfigField "String", "REGISTER_USER_API", "\"\""
+        buildConfigField "String", "CHECK_STATUS_API", "\"\""
+        buildConfigField "String", "FCM_TOKEN_API", "\"\""
+        buildConfigField "String", "CONFIG_API", "\"\""
+        buildConfigField "String", "GENERATE_OTP_API", "\"\""
+        buildConfigField "String", "VALIDATE_OTP_API", "\"\""
+        buildConfigField "String", "REFRESH_TOKEN_API", "\"\""
 
-        buildConfigField "String", "CALL_US_URL", ""
-        buildConfigField "String", "FAQ_URL", ""
-        buildConfigField "String", "PRIVACY_POLICY_URL", ""
-        buildConfigField "String", "TNC_URL", ""
-        buildConfigField "String", "VERIFY_APP_URL", ""
+        buildConfigField "String", "CALL_US_URL", "\"\""
+        buildConfigField "String", "FAQ_URL", "\"\""
+        buildConfigField "String", "PRIVACY_POLICY_URL", "\"\""
+        buildConfigField "String", "TNC_URL", "\"\""
+        buildConfigField "String", "VERIFY_APP_URL", "\"\""
 
         applicationId "nic.goi.aarogyasetu"
         minSdkVersion Integer.parseInt(project.MIN_SDK_VERSION)
@@ -147,13 +148,22 @@ android {
 
     buildFeatures {
         viewBinding true
+        dataBinding true
     }
 }
 
 dependencies {
-
     implementation 'com.google.firebase:firebase-crashlytics:20.0.4'
     implementation 'com.google.firebase:firebase-analytics:23.0.0'
+    implementation 'com.google.firebase:firebase-messaging:25.0.1'
+    implementation 'com.google.firebase:firebase-analytics-ktx:22.5.0'
+    //Firebase remote config
+    implementation ('com.google.firebase:firebase-config:19.1.3'){
+        exclude module: 'firebase-iid'
+        exclude module: 'firebase-iid-interop'
+    }
+
+
     def room_version = "2.2.5"
 
     implementation "androidx.room:room-runtime:$room_version"
@@ -181,17 +191,12 @@ dependencies {
 
     implementation 'com.github.bumptech.glide:glide:4.11.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
-    implementation 'com.google.firebase:firebase-messaging:25.0.1'
-    implementation 'com.google.firebase:firebase-analytics-ktx:22.5.0'
     implementation 'com.android.support:multidex:1.0.3'
 
     implementation 'com.google.android.gms:play-services-location:17.0.0'
     implementation 'com.google.android.gms:play-services-auth-api-phone:17.4.0'
 
     implementation "androidx.security:security-crypto:1.0.0-beta01"
-
-    //Firebase remote config
-    implementation 'com.google.firebase:firebase-config:19.1.3'
 
     implementation "com.google.android.play:core:1.6.0"
     implementation 'com.journeyapps:zxing-android-embedded:3.3.0'
