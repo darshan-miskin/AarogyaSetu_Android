@@ -3,28 +3,25 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'com.google.firebase.crashlytics'
 
+def keystorePropertiesFile = rootProject.file("keystore.properties")
+def keystoreProperties = new Properties()
+keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
 
-
-//def keystorePropertiesFile = rootProject.file("keystore.properties")
-//def keystoreProperties = new Properties()
-//keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
-//
-//
-//ext {
-//    sslPublicKey = keystoreProperties['ssl_public_key']
-//    sslBackupKey = keystoreProperties['ssl_backup_key']
-//    sslAuthKey = keystoreProperties['ssl_auth_key']
-//    sslAuthBackupKey = keystoreProperties['ssl_auth_backup_key']
-//    platformKey = keystoreProperties['platform_key']
-//    androidAlias = keystoreProperties['android_alias']
-//    androidKeystore = keystoreProperties['android_keystore']
-//    transformation = keystoreProperties['transformation']
-//    awsApiKey = keystoreProperties['aws_api_key']
-//    serviceUUID = keystoreProperties['service_uuid']
-//    didUUID = keystoreProperties['did_uuid']
-//    pingerUUID = keystoreProperties['pinger_uuid']
-//    authAlias = keystoreProperties['auth_alias']
-//}
+ext {
+    sslPublicKey = keystoreProperties['ssl_public_key']
+    sslBackupKey = keystoreProperties['ssl_backup_key']
+    sslAuthKey = keystoreProperties['ssl_auth_key']
+    sslAuthBackupKey = keystoreProperties['ssl_auth_backup_key']
+    platformKey = keystoreProperties['platform_key']
+    androidAlias = keystoreProperties['android_alias']
+    androidKeystore = keystoreProperties['android_keystore']
+    transformation = keystoreProperties['transformation']
+    awsApiKey = keystoreProperties['aws_api_key']
+    serviceUUID = keystoreProperties['service_uuid']
+    didUUID = keystoreProperties['did_uuid']
+    pingerUUID = keystoreProperties['pinger_uuid']
+    authAlias = keystoreProperties['auth_alias']
+}
 
 android {
     compileSdkVersion Integer.parseInt(project.APP_COMPILE_SDK_VERSION)
@@ -32,87 +29,49 @@ android {
 
     signingConfigs {
         release {
-//
-//            storeFile file(keystoreProperties['key_store_cetificate'])
-//            storePassword keystoreProperties['key_store_password']
-//            keyAlias keystoreProperties['key_alias']
-//            keyPassword keystoreProperties['key_password']
-//
-//
+            storeFile file(keystoreProperties['key_store_cetificate'])
+            storePassword keystoreProperties['key_store_password']
+            keyAlias keystoreProperties['key_alias']
+            keyPassword keystoreProperties['key_password']
         }
     }
 
     defaultConfig {
 
-//            buildConfigField "String", "AUTH_ALIAS", "\"${authAlias}\""
-//            buildConfigField "String", "DID_UUID", "\"${didUUID}\""
-//            buildConfigField "String", "PINGER_UUID", "\"${pingerUUID}\""
-//            buildConfigField "String", "SERVICE_UUID", "\"${serviceUUID}\""
-//            buildConfigField "String", "SSL_PUBLIC_KEY", "\"${sslPublicKey}\""
-//            buildConfigField "String", "SSL_BACKUP_KEY", "\"${sslBackupKey}\""
-//            buildConfigField "String", "SSL_AUTH_KEY", "\"${sslAuthKey}\""
-//            buildConfigField "String", "SSL_AUTH_BACKUP_KEY", "\"${sslAuthBackupKey}\""
-//            buildConfigField "String", "PLATFORM_KEY", "\"${platformKey}\""
-//            buildConfigField "String", "ALIAS", "\"${androidAlias}\""
-//            buildConfigField "String", "KEYSTORE", "\"${androidKeystore}\""
-//            buildConfigField "String", "TRANSFORMATION", "\"${transformation}\""
-//            buildConfigField "String", "AWS_API_KEY", "\"${awsApiKey}\""
-//            buildConfigField "String", "WEB_URL", "\"${keystoreProperties['webview_url']}\""
-//            buildConfigField "String", "WEB_HOST", "\"${keystoreProperties['webview_host']}\""
-//            buildConfigField "String", "HOST_URL", "\"${keystoreProperties['app_host_url']}\""
-//            buildConfigField "String", "AUTH_HOST_URL", "\"${keystoreProperties['auth_host_url']}\""
-//
-//            buildConfigField "String", "QR_PUBLIC_KEY_API", "\"${keystoreProperties['fetch_qr_public_key_api']}\""
-//            buildConfigField "String", "QR_CODE_API", "\"${keystoreProperties['fetch_qr_api']}\""
-//            buildConfigField "String", "BULK_UPLOAD_API", "\"${keystoreProperties['bulk_upload_api']}\""
-//            buildConfigField "String", "REGISTER_USER_API", "\"${keystoreProperties['register_user_api']}\""
-//            buildConfigField "String", "CHECK_STATUS_API", "\"${keystoreProperties['check_status_api']}\""
-//            buildConfigField "String", "FCM_TOKEN_API", "\"${keystoreProperties['update_fcm_token_api']}\""
-//            buildConfigField "String", "CONFIG_API", "\"${keystoreProperties['fetch_config_api']}\""
-//            buildConfigField "String", "GENERATE_OTP_API", "\"${keystoreProperties['generate_otp_api']}\""
-//            buildConfigField "String", "VALIDATE_OTP_API", "\"${keystoreProperties['validate_otp_api']}\""
-//            buildConfigField "String", "REFRESH_TOKEN_API", "\"${keystoreProperties['refresh_auth_token_api']}\""
-//
-//            buildConfigField "String", "CALL_US_URL", "\"${keystoreProperties['call_us_url']}\""
-//            buildConfigField "String", "FAQ_URL", "\"${keystoreProperties['faq_url']}\""
-//            buildConfigField "String", "PRIVACY_POLICY_URL", "\"${keystoreProperties['privacy_policy_url']}\""
-//            buildConfigField "String", "TNC_URL", "\"${keystoreProperties['tnc_url']}\""
-//            buildConfigField "String", "VERIFY_APP_URL", "\"${keystoreProperties['verify_app_url']}\""
+            buildConfigField "String", "AUTH_ALIAS", "\"${authAlias}\""
+            buildConfigField "String", "DID_UUID", "\"${didUUID}\""
+            buildConfigField "String", "PINGER_UUID", "\"${pingerUUID}\""
+            buildConfigField "String", "SERVICE_UUID", "\"${serviceUUID}\""
+            buildConfigField "String", "SSL_PUBLIC_KEY", "\"${sslPublicKey}\""
+            buildConfigField "String", "SSL_BACKUP_KEY", "\"${sslBackupKey}\""
+            buildConfigField "String", "SSL_AUTH_KEY", "\"${sslAuthKey}\""
+            buildConfigField "String", "SSL_AUTH_BACKUP_KEY", "\"${sslAuthBackupKey}\""
+            buildConfigField "String", "PLATFORM_KEY", "\"${platformKey}\""
+            buildConfigField "String", "ALIAS", "\"${androidAlias}\""
+            buildConfigField "String", "KEYSTORE", "\"${androidKeystore}\""
+            buildConfigField "String", "TRANSFORMATION", "\"${transformation}\""
+            buildConfigField "String", "AWS_API_KEY", "\"${awsApiKey}\""
+            buildConfigField "String", "WEB_URL", "\"${keystoreProperties['webview_url']}\""
+            buildConfigField "String", "WEB_HOST", "\"${keystoreProperties['webview_host']}\""
+            buildConfigField "String", "HOST_URL", "\"${keystoreProperties['app_host_url']}\""
+            buildConfigField "String", "AUTH_HOST_URL", "\"${keystoreProperties['auth_host_url']}\""
 
-        buildConfigField "String", "AUTH_ALIAS", "\"\""
-        buildConfigField "String", "DID_UUID", "\"\""
-        buildConfigField "String", "PINGER_UUID", "\"\""
-        buildConfigField "String", "SERVICE_UUID", "\"\""
-        buildConfigField "String", "SSL_PUBLIC_KEY", "\"\""
-        buildConfigField "String", "SSL_BACKUP_KEY", "\"\""
-        buildConfigField "String", "SSL_AUTH_KEY", "\"\""
-        buildConfigField "String", "SSL_AUTH_BACKUP_KEY", "\"\""
-        buildConfigField "String", "PLATFORM_KEY", "\"\""
-        buildConfigField "String", "ALIAS", "\"\""
-        buildConfigField "String", "KEYSTORE", "\"\""
-        buildConfigField "String", "TRANSFORMATION", "\"\""
-        buildConfigField "String", "AWS_API_KEY", "\"\""
-        buildConfigField "String", "WEB_URL", "\"\""
-        buildConfigField "String", "WEB_HOST", "\"\""
-        buildConfigField "String", "HOST_URL", "\"\""
-        buildConfigField "String", "AUTH_HOST_URL", "\"\""
+            buildConfigField "String", "QR_PUBLIC_KEY_API", "\"${keystoreProperties['fetch_qr_public_key_api']}\""
+            buildConfigField "String", "QR_CODE_API", "\"${keystoreProperties['fetch_qr_api']}\""
+            buildConfigField "String", "BULK_UPLOAD_API", "\"${keystoreProperties['bulk_upload_api']}\""
+            buildConfigField "String", "REGISTER_USER_API", "\"${keystoreProperties['register_user_api']}\""
+            buildConfigField "String", "CHECK_STATUS_API", "\"${keystoreProperties['check_status_api']}\""
+            buildConfigField "String", "FCM_TOKEN_API", "\"${keystoreProperties['update_fcm_token_api']}\""
+            buildConfigField "String", "CONFIG_API", "\"${keystoreProperties['fetch_config_api']}\""
+            buildConfigField "String", "GENERATE_OTP_API", "\"${keystoreProperties['generate_otp_api']}\""
+            buildConfigField "String", "VALIDATE_OTP_API", "\"${keystoreProperties['validate_otp_api']}\""
+            buildConfigField "String", "REFRESH_TOKEN_API", "\"${keystoreProperties['refresh_auth_token_api']}\""
 
-        buildConfigField "String", "QR_PUBLIC_KEY_API", "\"\""
-        buildConfigField "String", "QR_CODE_API", "\"\""
-        buildConfigField "String", "BULK_UPLOAD_API", "\"\""
-        buildConfigField "String", "REGISTER_USER_API", "\"\""
-        buildConfigField "String", "CHECK_STATUS_API", "\"\""
-        buildConfigField "String", "FCM_TOKEN_API", "\"\""
-        buildConfigField "String", "CONFIG_API", "\"\""
-        buildConfigField "String", "GENERATE_OTP_API", "\"\""
-        buildConfigField "String", "VALIDATE_OTP_API", "\"\""
-        buildConfigField "String", "REFRESH_TOKEN_API", "\"\""
-
-        buildConfigField "String", "CALL_US_URL", "\"\""
-        buildConfigField "String", "FAQ_URL", "\"\""
-        buildConfigField "String", "PRIVACY_POLICY_URL", "\"\""
-        buildConfigField "String", "TNC_URL", "\"\""
-        buildConfigField "String", "VERIFY_APP_URL", "\"\""
+            buildConfigField "String", "CALL_US_URL", "\"${keystoreProperties['call_us_url']}\""
+            buildConfigField "String", "FAQ_URL", "\"${keystoreProperties['faq_url']}\""
+            buildConfigField "String", "PRIVACY_POLICY_URL", "\"${keystoreProperties['privacy_policy_url']}\""
+            buildConfigField "String", "TNC_URL", "\"${keystoreProperties['tnc_url']}\""
+            buildConfigField "String", "VERIFY_APP_URL", "\"${keystoreProperties['verify_app_url']}\""
 
         applicationId "nic.goi.aarogyasetu"
         minSdkVersion Integer.parseInt(project.MIN_SDK_VERSION)
