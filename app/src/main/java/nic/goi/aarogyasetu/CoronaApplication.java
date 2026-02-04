@@ -40,12 +40,6 @@ public class CoronaApplication extends Application implements Configuration.Prov
                 new Configuration.Builder()
                         .setExecutor(Executors.newFixedThreadPool(8))
                         .build());
-
-        //TODO: Remove below commented code, not required anymore
-//        new Thread(() -> {
-//            Fabric.with(CoronaApplication.getInstance(), new Crashlytics());
-//        }).start();
-
     }
 
     public void setBestLocation(Location location)
