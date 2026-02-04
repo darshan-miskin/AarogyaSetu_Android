@@ -2,6 +2,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'com.google.firebase.crashlytics'
+apply plugin: 'com.google.gms.google-services'
 
 def keystorePropertiesFile = rootProject.file("keystore.properties")
 def keystoreProperties = new Properties()
@@ -99,6 +100,9 @@ android {
         sourceCompatibility JavaVersion.VERSION_17
         targetCompatibility JavaVersion.VERSION_17
     }
+    kotlinOptions {
+        jvmTarget = '17'
+    }
     namespace 'nic.goi.aarogyasetu'
     lint {
         abortOnError false
@@ -176,4 +180,3 @@ dependencies {
         exclude group: 'org.json', module: 'json' //provided by Android natively
     }
 }
-apply plugin: 'com.google.gms.google-services'
